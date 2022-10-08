@@ -11,24 +11,36 @@ mkdir $DIRECTORY
 case $2 in 
     nmap-only)
         echo "Start scanning using nmap"
-        # nmap $DOMAIN > $DIRECTORY\nmap_result
-        echo "The results of nmap scan are stored in $DIRECTORY/nmap_recon"
+        # nmap $DOMAIN > $DIRECTORY/nmap_result
+        echo "The results of nmap scan are stored in $DIRECTORY/nmap"
     ;;    
     dirsearch-only)
         echo "Start scanning using dirsearch"
-        cd ../dirsearch && python3 dirsearch.py -u $DOMAIN -e php > $DIRECTORY\dirsearch
+        dirsearch -u $DOMAIN -e php -o $DIRECTORY/dirsearch.txt
         echo "The results of dirsearch scan are stored in $DIRECTORY/dirsearch."   
     ;;    
     crt-only)
+        echo "Start scanning using crt"
+        curl "https://crt.sh/?q=$DOMAIN&output=json" -o $DIRECTORY/crt
+        echo "The results of crt scan are stored in $DIRECTORY/crt"
+    ;;
+
+    *)
         echo "Start scanning using nmap"
-        # nmap $DOMAIN > $DIRECTORY\nmap_result
-        echo "The results of nmap scan are stored in $DIRECTORY/nmap_recon"
+        # nmap $DOMAIN > $DIRECTORY/nmap_result
+        echo "The results of nmap scan are stored in $DIRECTORY/nmap"
 
-    echo "Start scanning using dirsearch"
-    cd ../dirsearch && python3 dirsearch.py -u $DOMAIN -e php > $DIRECTORY\dirsearch
-    echo "The results of dirsearch scan are stored in $DIRECTORY/dirsearch." 
+        echo "Start scanning using dirsearch"
+        dirsearch -u $DOMAIN -e php -o $DIRECTORY/dirsearch.txt
+        echo "The results of dirsearch scan are stored in $DIRECTORY/dirsearch." 
 
-fi
+        echo "Start scanning using crt"
+        curl "https://crt.sh/?q=$DOMAIN&output=json" -o $DIRECTORY/crt
+        echo "The results of crt scan are stored in $DIRECTORY/crt"
+    ;;    
+
+esac
+
 
     
 

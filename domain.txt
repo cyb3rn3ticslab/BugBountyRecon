@@ -1,0 +1,11 @@
+anywhere.epam.com
+examinator.epam.com
+git.epam.com
+investors.epam.com
+learn.epam.com
+levelup.epam.com
+onboarding.epam.com
+lifescience.opensource.epam.com
+time.epam.com
+training.epam.com
+vacation.epam.com
