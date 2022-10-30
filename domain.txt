@@ -1,11 +1,15 @@
 anywhere.epam.com
+desk.epam.com
+ethicsgame.epam.com
 examinator.epam.com
 git.epam.com
-investors.epam.com
 learn.epam.com
 levelup.epam.com
-onboarding.epam.com
 lifescience.opensource.epam.com
+password.epam.com
+people.epam.com
+profile.epam.com
+reportportal.epam.com
 time.epam.com
 training.epam.com
 vacation.epam.com

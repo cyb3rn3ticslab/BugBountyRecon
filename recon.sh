@@ -5,36 +5,47 @@ TODAY=$(date)
 
 echo "This scan was created on $TODAY"
 
-echo "Creating directory $DIRECTORY. "
-mkdir $DIRECTORY
+echo "Creating Directory 
+DIRECTORY. "
+mkdir 
+DIRECTORY
 
 case $2 in 
     nmap-only)
-        echo "Start scanning using nmap"
-        # nmap $DOMAIN > $DIRECTORY/nmap_result
+        echo "[+] Harvesting scanning using nmap"
+        # nmap $DOMAIN > DIRECTORY/nmap_result
         echo "The results of nmap scan are stored in $DIRECTORY/nmap"
     ;;    
     dirsearch-only)
-        echo "Start scanning using dirsearch"
+        echo "[+] Harvesting directory using dirsearch"
         dirsearch -u $DOMAIN -e php -o $DIRECTORY/dirsearch.txt
         echo "The results of dirsearch scan are stored in $DIRECTORY/dirsearch."   
     ;;    
     crt-only)
-        echo "Start scanning using crt"
+        echo "[+] Scanning using crt"
+        
         curl "https://crt.sh/?q=$DOMAIN&output=json" -o $DIRECTORY/crt
         echo "The results of crt scan are stored in $DIRECTORY/crt"
     ;;
-
+    assetfinder-only)
+        echo "[+] Harvesing subdomains with assetfinder....."
+        assetfinder --subs-only $DIRECTORY >> $DIRECTORY/assetfinder/assetfinder-scan.txt
+        echo "The results of crt scan are stored in $DIRECTORY/assetfinder"
+    ;;
     *)
-        echo "Start scanning using nmap"
+        echo "[+] Scanning using nmap"
         # nmap $DOMAIN > $DIRECTORY/nmap_result
         echo "The results of nmap scan are stored in $DIRECTORY/nmap"
 
-        echo "Start scanning using dirsearch"
+        echo "[+] Harvesting directory using dirsearch"
         dirsearch -u $DOMAIN -e php -o $DIRECTORY/dirsearch.txt
         echo "The results of dirsearch scan are stored in $DIRECTORY/dirsearch." 
 
-        echo "Start scanning using crt"
+        echo "[+] Harvesing subdomains with assetfinder....."
+        assetfinder --subs-only $DOMAIN >> $DIRECTORY/assetfinder/assetfinder-scan.txt
+        echo "The results of crt scan are stored in $DIRECTORY/assetfinder"
+
+        echo "[+] Scanning using crt"        
         curl "https://crt.sh/?q=$DOMAIN&output=json" -o $DIRECTORY/crt
         echo "The results of crt scan are stored in $DIRECTORY/crt"
     ;;    
